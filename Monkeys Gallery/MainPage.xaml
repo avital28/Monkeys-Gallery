@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Monkeys_Gallery.models"
+             x:DataType="models:Monkey"
+             x:Class="Monkeys_Gallery.MainPage">
+
+    <ScrollView>
+        <HorizontalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Button
+            x:Name="left"
+            BorderColor="LavenderBlush"
+            BorderWidth="3"
+            Clicked="LeftBtnClicked"
+            CornerRadius="40"
+            HeightRequest="80"
+            WidthRequest="80"
+                Text="left">
+                
+            </Button>
+            <Label Text="{Binding Name}"></Label>
+
+            <Button
+            x:Name="right"
+            BorderColor="LavenderBlush"
+            BorderWidth="3"
+            Clicked="RightBtnClicked"
+            CornerRadius="40"
+            HeightRequest="80"
+            WidthRequest="80"
+                Text="right">
+
+            </Button>
+        </HorizontalStackLayout>
+    </ScrollView>
+
+</ContentPage>
