@@ -1,23 +1,26 @@
 ﻿using Monkeys_Gallery.models;
+using System.Collections.ObjectModel;
 
 namespace Monkeys_Gallery;
 
 public partial class MainPage : ContentPage
 {
 	int count = 0;
-    List<Monkey> monkeys = new List<Monkey> { };
-    Monkey m;
+    ObservableCollection<Monkey> monkeys  { get; set; }
+    private Monkey monkey;
+    public Monkey Monkey { get => monkey; set { if (value != monkey) { monkey = value; OnPropertyChanged("Monkey"); } } }
+
 
 
     public MainPage()
 	{
-        
-        
+        monkeys = new ObservableCollection<Monkey> { };
         AddMonkeys();
-        m = monkeys[0];
-        this.BindingContext = m;
+        monkey = new Monkey("Baboon1", "Africa & Asia", "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.", "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg", 10000);
+        monkeys.Add(monkey);
         InitializeComponent();
-	}
+        this.BindingContext = this;
+    }
 
     public void AddMonkeys()
     {
@@ -41,7 +44,8 @@ public partial class MainPage : ContentPage
         else
         {
             count--;
-            m = monkeys[count];
+            Monkey = monkeys[count];
+            OnPropertyChanged("Monkey");
             right.IsEnabled = true;
         }
 
@@ -54,7 +58,8 @@ public partial class MainPage : ContentPage
         else
         {
             count++;
-            m = monkeys[count];
+            Monkey= monkeys[count];
+            OnPropertyChanged("Monkey");
             left.IsEnabled = true;
         }
 

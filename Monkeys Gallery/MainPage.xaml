@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Monkeys_Gallery.models"
-             x:DataType="models:Monkey"
+             xmlns:Local="clr-namespace:Monkeys_Gallery"
+             x:DataType="Local:MainPage"
              x:Class="Monkeys_Gallery.MainPage">
 
     <ScrollView>
@@ -10,8 +11,9 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
-
-            <Button
+            <Grid BindingContext="{Binding Monkey}"
+                  RowDefinitions="*,*,*">
+                <Button 
             x:Name="left"
             BorderColor="LavenderBlush"
             BorderWidth="3"
@@ -22,10 +24,10 @@
                 Text="left">
                 
             </Button>
-            <Label Text="{Binding Name}"></Label>
-
-            <Button
-            x:Name="right"
+                <Label x:DataType="models:Monkey" Text="{Binding Name}" ></Label>
+                <Button
+                    Grid.Row="2"
+                    x:Name="right"
             BorderColor="LavenderBlush"
             BorderWidth="3"
             Clicked="RightBtnClicked"
@@ -35,6 +37,7 @@
                 Text="right">
 
             </Button>
+            </Grid>
         </HorizontalStackLayout>
     </ScrollView>
 
